@@ -53,6 +53,19 @@ export async function GET(
       ? post.metadata.tags.split(",").map((tag) => tag.trim())
       : [];
 
+    // Handle publishedAt as a date range
+    let dateForFeed;
+    if (post.metadata.publishedAt && post.metadata.publishedAt.includes(" to ")) {
+      const [start, end] = post.metadata.publishedAt.split(" to ").map((d) => d.trim());
+      if (end === "present" || end === "9999-12-31") {
+        dateForFeed = new Date(); // Use current date for ongoing experiences
+      } else {
+        dateForFeed = new Date(end); // Use end date for completed experiences
+      }
+    } else {
+      dateForFeed = new Date(post.metadata.publishedAt);
+    }
+
     feed.addItem({
       title: post.metadata.title,
       id: postUrl,
@@ -62,7 +75,7 @@ export async function GET(
         name: tag,
         term: tag,
       })),
-      date: new Date(post.metadata.publishedAt),
+      date: dateForFeed,
     });
   });
 
