@@ -71,8 +71,8 @@ export default function Blog({ params }) {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
+            datePublished: post.metadata.startDate,
+            dateModified: post.metadata.endDate || post.metadata.startDate,
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${metaData.baseUrl}${post.metadata.image}`
@@ -90,7 +90,15 @@ export default function Blog({ params }) {
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-medium">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
+          {/* {formatDate(post.metadata.publishedAt)} */}
+
+          {post.metadata.startDate && post.metadata.endDate
+            ? `${formatDate(post.metadata.startDate)} to ${
+                post.metadata.endDate === "9999-12-31" || post.metadata.endDate === "present"
+                  ? "Present"
+                  : formatDate(post.metadata.endDate)
+              }`
+            : formatDate(post.metadata.startDate || "")}
         </p>
       </div>
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">

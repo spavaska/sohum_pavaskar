@@ -7,24 +7,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Project One",
+    title: "News NLP Scrapper 🗞️",
+    year: 2024,
+    description:
+      "Fetches trending news articles from trusted sources. Users can search news regarding certain topics, countries, or keyword searches",
+    url: "https://github.com/spavaska/News-NLP-Scrapper",
+  },
+  {
+    title: "LinkedIn Scrapper for Alumni Database 🔗",
     year: 2023,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam veritatis dolorem rem praesentium dicta labore, at laudantium quisquam.",
-    url: "https://example.com/",
-  },
-  {
-    title: "Project Two",
-    year: 2022,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam veritatis dolorem rem praesentium dicta labore, at laudantium quisquam.",
-    url: "https://example.com/",
-  },
-  {
-    title: "Project Three",
-    year: 2021,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam veritatis dolorem rem praesentium dicta labore, at laudantium quisquam.",
-    url: "https://example.com/",
+      "Parses LinkedIn profiles. Uses BeautifulSoup with HTML tags to extract key data points (company, current role, university, year graduated, etc.).",
+    url: "",
   },
 ];

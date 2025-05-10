@@ -42,11 +42,28 @@ function getMDXData(dir: string) {
     let { metadata, content } = readMDXFile(path.join(dir, file));
     let slug = path.basename(file, path.extname(file));
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
+    // return {
+    //   metadata,
+    //   slug,
+    //   content,
+    // };
+
+        // Process the `publishedAt` field for date ranges
+        let [startDate, endDate] = metadata.publishedAt
+        ? metadata.publishedAt.split(" to ").map((date) => date.trim())
+        : [null, null];
+  
+      // Return the updated post object
+      return {
+        metadata: {
+          ...metadata,
+          startDate, // Add start date
+          endDate,   // Add end date
+        },
+        slug,
+        content,
+      };
+  
   });
 }
 
